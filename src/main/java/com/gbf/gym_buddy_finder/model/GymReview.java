@@ -28,7 +28,7 @@ public class GymReview {
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     private UserAccount userAccount;
-
+// 
     @Getter
     private Rating rating;
 

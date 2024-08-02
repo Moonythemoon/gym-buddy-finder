@@ -3,6 +3,7 @@ package com.gbf.gym_buddy_finder.repository;
 import com.gbf.gym_buddy_finder.model.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
             "AND p1.user_account_id <> p.user_account_id;",
             nativeQuery = true)
     List<UserProfile> findNearbyProfiles(Long id);
+    
+    
 }

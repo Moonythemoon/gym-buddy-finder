@@ -25,4 +25,7 @@ public class UserProfileController {
     public List<UserProfile> getNearbyProfiles(@RequestParam(name = "id") Long id) {
         return userProfileService.getNearbyProfiles(id);
     }
+    
+
+
 }

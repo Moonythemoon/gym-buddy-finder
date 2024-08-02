@@ -14,6 +14,9 @@ import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
 import { UserContext } from "./UserContext";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 
+import SearchPage from "./components/SearchPage/SearchPage";
+import Navbar from "./components/Navbar/NavBar";
+
 function App() {
   const [user, setUser] = useState(localStorage.getItem("user"));
   const handleLogin = (userData) => {
@@ -30,6 +33,7 @@ function App() {
     <Router>
       <div className="App">
         <UserContext.Provider value={{ user, setUser }}>
+        <RouteNavBar user={user} onLogout={handleLogout} />
           <Routes>
             <Route
               path="/"
@@ -43,9 +47,14 @@ function App() {
             />
             <Route path="/register" element={<RegistrationPage />} />
             <Route
-              path="/profile/:id"
-              element={<ProfilePage onLogout={handleLogout} />}
+              path="/search"
+              element={<SearchPage user={user} onLogout={handleLogout} />} 
             />
+            
+            <Route 
+            path="/profile/:id" 
+            element={<ProfilePage onLogout={handleLogout} />} 
+          />
           </Routes>
           {/* <div>
           {!user && (
@@ -58,11 +67,21 @@ function App() {
   );
 }
 
+function RouteNavBar({ user, onLogout }) {
+  const location = useLocation();
+
+  // Highlighted Fix: Conditional rendering of Navbar
+  if (location.pathname !== "/register" && location.pathname !== "/") {
+    return <Navbar user={user} onLogout={onLogout} />;
+  }
+
+  return null;
+}
 function AuthLink() {
   const location = useLocation();
   if (location.pathname !== "/register") {
     return (
-      <p class="registration-link">
+      <p className="registration-link">
         Don't have an account?{" "}
         <Link to="/register">Click here to register</Link>
       </p>

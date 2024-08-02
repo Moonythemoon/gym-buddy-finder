@@ -2,6 +2,8 @@ package com.gbf.gym_buddy_finder.service;
 
 import com.gbf.gym_buddy_finder.model.UserProfile;
 import com.gbf.gym_buddy_finder.repository.UserProfileRepository;
+
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,4 +22,6 @@ public class UserProfileService {
     public List<UserProfile> getNearbyProfiles(Long id) {
         return userProfileRepository.findNearbyProfiles(id);
     }
+    
+
 }

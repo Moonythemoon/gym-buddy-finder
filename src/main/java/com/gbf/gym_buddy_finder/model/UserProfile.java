@@ -79,4 +79,6 @@ public class UserProfile {
     @Getter
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
 }
